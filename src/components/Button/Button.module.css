@@ -1,0 +1,31 @@
+.btn {
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  padding: 10px 20px;
+  color: #1b1717;
+  font-size: 16px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  margin-top: 20px;
+  letter-spacing: 4px;
+}
+
+.btn.isSelected {
+  background-color: #00bcd4;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus {
+  background-color: #00bcd4;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}

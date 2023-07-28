@@ -2,10 +2,19 @@ import React from 'react';
 import { Formik, Field, ErrorMessage } from 'formik';
 import Notiflix from 'notiflix';
 import * as Yup from 'yup';
-import { FormContact, Label, Button, Input, Div } from './ContactForm.styled';
+import {
+  Label,
+  Button,
+  Input,
+  Div,
+  FormBox,
+  ContactBox,
+  Span,
+} from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
+import { Form } from 'formik';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -53,19 +62,24 @@ const ContactForm = () => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      <FormContact>
-        <Label>
-          Name
-          <Field type="text" name="name" as={Input} />
-          <ErrorMessage name="name" component={Div} />
-        </Label>
-        <Label>
-          Number
-          <Field type="tel" name="number" as={Input} />
-          <ErrorMessage name="number" component={Div} />
-        </Label>
-        <Button type="submit">Add contact</Button>
-      </FormContact>
+      <FormBox>
+        <Form autoComplete="off">
+          <ContactBox>
+            <Field type="text" name="name" as={Input} required />
+            <ErrorMessage name="name" component={Div} />
+            <Label>Name</Label>
+          </ContactBox>
+          <ContactBox>
+            <Field type="text" name="number" as={Input} required />
+            <ErrorMessage name="number" component={Div} />
+            <Label>Number</Label>
+          </ContactBox>
+
+          <Button type="submit">
+            Add contact <Span></Span>
+          </Button>
+        </Form>
+      </FormBox>
     </Formik>
   );
 };

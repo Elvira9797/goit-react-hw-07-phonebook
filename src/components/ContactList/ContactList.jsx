@@ -1,37 +1,42 @@
-import { List, ListItem, Button, Data } from './ContactList.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/operations';
+import ContactListItem from 'components/ContactListItem/ContactListItem';
+import { List } from './ContactList.styled';
+import { useSelector } from 'react-redux';
+import {
+  selectContacts,
+  selectFilter,
+  selectStatusFilter,
+} from 'redux/selectors';
+import { statusFilters } from 'redux/constants';
 
-import { selectContacts, selectFilter } from 'redux/selectors';
+const getVisibleContacts = (contacts, statusFilter) => {
+  switch (statusFilter) {
+    case statusFilters.favourites:
+      return contacts.filter(contact => contact.favorite);
+    default:
+      return contacts;
+  }
+};
 
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
-  const filterValue = useSelector(selectFilter);
-  const dispatch = useDispatch();
+  const statusFilter = useSelector(selectStatusFilter);
+  const visibleContacts = getVisibleContacts(contacts, statusFilter);
 
-  const getVisibleContacts = () => {
+  const filterValue = useSelector(selectFilter);
+
+  const getFilteredContacts = () => {
     const formatedFiltered = filterValue.toLowerCase();
-    return contacts.filter(({ name }) =>
+    return visibleContacts.filter(({ name }) =>
       name.toLowerCase().includes(formatedFiltered)
     );
   };
 
-  const visibleContacts = getVisibleContacts();
+  const filteredContacts = getFilteredContacts();
 
   return (
     <List>
-      {visibleContacts.map(({ id, name, number }, index) => {
-        return (
-          <ListItem key={id}>
-            {`${index + 1})`}
-            <Data>
-              {name}: {number}
-            </Data>
-            <Button type="button" onClick={() => dispatch(deleteContact(id))}>
-              Delete
-            </Button>
-          </ListItem>
-        );
+      {filteredContacts.map(contact => {
+        return <ContactListItem key={contact.id} contact={contact} />;
       })}
     </List>
   );

@@ -2,10 +2,11 @@ import styled from '@emotion/styled';
 
 export const Label = styled.label`
   display: flex;
+  align-items: center;
   flex-direction: column;
   font-size: 18px;
   font-weight: 500;
-  gap: 10px;
+  gap: 5px;
 `;
 
 export const Input = styled.input`
@@ -13,7 +14,10 @@ export const Input = styled.input`
   border-top: none;
   border-right: none;
   border-left: none;
-  width: 180px;
+  font-size: 18px;
+  width: 300px;
+  margin-bottom: 15px;
+  background-color: #e8e8e8;
   transition: border-bottom 0.3s ease-in-out;
   &:focus {
     outline: none;
