@@ -36,6 +36,7 @@ export const Input = styled.input`
   color: #fff;
   margin-bottom: 20px;
   border: none;
+  border-radius: 0;
   border-bottom: 1px solid #fff;
   outline: none;
   background-color: transparent;
