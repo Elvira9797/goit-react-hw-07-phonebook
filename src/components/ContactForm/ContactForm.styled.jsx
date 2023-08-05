@@ -6,7 +6,7 @@ export const FormBox = styled.div`
   padding: 40px;
   background: rgba(24, 20, 20, 0.987);
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   margin-bottom: 25px;
   @media (max-width: 420px) {
